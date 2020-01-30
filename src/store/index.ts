@@ -14,6 +14,11 @@ const defaultBoard: IBoard = {
           value: "Make a portfolio website",
           created: new Date(),
           id: "1234"
+        },
+        {
+          value: "Change job",
+          created: new Date(),
+          id: "33"
         }
       ]
     },
