@@ -1,23 +1,17 @@
 <template>
-  <v-container>
+  <v-container class="fill-height">
     <v-row justify="space-around">
       <v-col cols="12" xs="12">
-        <v-sheet class="pa-12" color="grey lighten-3" elevation="2">
-          <v-row justify="space-around">
-            <v-col
-              :cols="columnWidth"
-              :xs="columnWidth"
-              v-for="(column, index) in columns"
-              :key="index"
-            >
-              <v-sheet elevation="2" class="mx-auto" height="500" width="300">
-                <h2>{{ column.name }}</h2>
-
-                <v-divider />
-              </v-sheet>
-            </v-col>
-          </v-row>
-        </v-sheet>
+        <v-row justify="space-around">
+          <v-col
+            v-for="(column, index) in columns"
+            :key="index"
+            :cols="columnWidth"
+            :xs="columnWidth"
+          >
+            <kanban-column :name="column.name" />
+          </v-col>
+        </v-row>
       </v-col>
     </v-row>
   </v-container>
@@ -25,11 +19,17 @@
 
 <script lang="ts">
 import { Vue, Component, Prop } from "vue-property-decorator";
+import KanbanColumn from "@/components/KanbanColumn.vue";
+
 interface IColumn {
   name: string;
 }
 
-@Component
+@Component({
+  components: {
+    KanbanColumn
+  }
+})
 export default class KanbanBoard extends Vue {
   private columns: IColumn[] = [
     {
@@ -51,6 +51,3 @@ export default class KanbanBoard extends Vue {
   }
 }
 </script>
-
-<style lang="scss" scoped>
-</style>

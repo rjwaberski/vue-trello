@@ -1,0 +1,13 @@
+.neuromorphic-shadow {
+  &--concave {
+    border-radius: 50px;
+    background: linear-gradient(145deg, #ffffff, #dddddd);
+    box-shadow: 30px 30px 60px #d0d0d0, -30px -30px 60px #ffffff;
+  }
+
+  &--convex {
+    border-radius: 50px;
+    background: linear-gradient(145deg, #dddddd, #ffffff);
+    box-shadow: 30px 30px 60px #d0d0d0, -30px -30px 60px #ffffff;
+  }
+}
