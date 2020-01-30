@@ -12,7 +12,8 @@ const defaultBoard: IBoard = {
       items: [
         {
           value: "Make a portfolio website",
-          created: new Date()
+          created: new Date(),
+          id: "1234"
         }
       ]
     },
@@ -25,7 +26,8 @@ const defaultBoard: IBoard = {
       items: [
         {
           value: "Vue kanban board project",
-          created: new Date()
+          created: new Date(),
+          id: "12345"
         }
       ]
     },

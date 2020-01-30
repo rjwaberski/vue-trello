@@ -14,6 +14,8 @@
         </v-row>
       </v-col>
     </v-row>
+
+    <router-view :dialog="isOpen" />
   </v-container>
 </template>
 
@@ -34,6 +36,10 @@ export default class KanbanBoard extends Vue {
 
   private get columnWidth(): number {
     return this.board.columns.length ? 12 / this.board.columns.length : 0;
+  }
+
+  private get isOpen(): boolean {
+    return this.$route.name === "task";
   }
 }
 </script>

@@ -11,4 +11,5 @@ export interface IBoardItem {
   created: Date;
   updated?: Date;
   value: string;
+  id: string;
 }

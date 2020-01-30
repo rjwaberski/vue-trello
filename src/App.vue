@@ -1,14 +1,13 @@
 <template>
   <v-app>
     <v-content class="app-content">
-      <kanban-board />
+      <router-view />
     </v-content>
   </v-app>
 </template>
 
 <script lang="ts">
 import { Vue, Component } from "vue-property-decorator";
-
 import KanbanBoard from "@/components/KanbanBoard.vue";
 
 @Component({
