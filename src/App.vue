@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <v-content>
+    <v-content class="app-content">
       <kanban-board />
     </v-content>
   </v-app>
@@ -21,4 +21,8 @@ export default class App extends Vue {}
 
 <style lang="scss">
 @import "./assets/scss/main.scss";
+
+.main-app {
+  background: #dfdfdf;
+}
 </style>

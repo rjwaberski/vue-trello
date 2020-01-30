@@ -4,12 +4,12 @@
       <v-col cols="12" xs="12">
         <v-row justify="space-around">
           <v-col
-            v-for="(column, index) in columns"
+            v-for="(column, index) in board.columns"
             :key="index"
             :cols="columnWidth"
             :xs="columnWidth"
           >
-            <kanban-column :name="column.name" />
+            <kanban-column :column="column" />
           </v-col>
         </v-row>
       </v-col>
@@ -19,11 +19,10 @@
 
 <script lang="ts">
 import { Vue, Component, Prop } from "vue-property-decorator";
-import KanbanColumn from "@/components/KanbanColumn.vue";
+import { State } from "vuex-class";
+import { IBoardColumn, IBoard } from "@/interfaces/board";
 
-interface IColumn {
-  name: string;
-}
+import KanbanColumn from "@/components/KanbanColumn.vue";
 
 @Component({
   components: {
@@ -31,23 +30,10 @@ interface IColumn {
   }
 })
 export default class KanbanBoard extends Vue {
-  private columns: IColumn[] = [
-    {
-      name: "backlog"
-    },
-    {
-      name: "todo"
-    },
-    {
-      name: "in progress"
-    },
-    {
-      name: "done"
-    }
-  ];
+  @State board!: IBoard;
 
   private get columnWidth(): number {
-    return 12 / this.columns.length;
+    return this.board.columns.length ? 12 / this.board.columns.length : 0;
   }
 }
 </script>
