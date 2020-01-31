@@ -10,6 +10,7 @@ export interface IBoardColumn {
 export interface IBoardItem {
   created: Date;
   updated?: Date;
-  value: string;
+  name: string;
+  content: string;
   id: string;
 }

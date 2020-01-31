@@ -15,14 +15,14 @@
       </v-col>
     </v-row>
 
-    <router-view :dialog="isOpen" />
+    <router-view :dialog="isOpen" :task="selectedTask" />
   </v-container>
 </template>
 
 <script lang="ts">
 import { Vue, Component, Prop } from "vue-property-decorator";
-import { State } from "vuex-class";
-import { IBoardColumn, IBoard } from "@/interfaces/board";
+import { State, Getter } from "vuex-class";
+import { IBoardColumn, IBoard, IBoardItem } from "@/interfaces/board";
 
 import KanbanColumn from "@/components/KanbanColumn.vue";
 
@@ -33,6 +33,7 @@ import KanbanColumn from "@/components/KanbanColumn.vue";
 })
 export default class KanbanBoard extends Vue {
   @State board!: IBoard;
+  @Getter private getTask!: (id: string) => IBoardItem | undefined;
 
   private get columnWidth(): number {
     return this.board.columns.length ? 12 / this.board.columns.length : 0;
@@ -40,6 +41,12 @@ export default class KanbanBoard extends Vue {
 
   private get isOpen(): boolean {
     return this.$route.name === "task";
+  }
+
+  private get selectedTask(): IBoardItem | null {
+    debugger;
+    const id: string | null = this.isOpen ? this.$route.params.id : null;
+    return id ? this.getTask(id) || null : null;
   }
 }
 </script>

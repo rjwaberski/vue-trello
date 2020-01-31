@@ -9,12 +9,12 @@
           class="neuromorphic-shadow--concave mb-3"
         >
           <v-list-item-icon>
-            <v-btn :to="{ name: 'task', params: { id: '1234'}}" text small>
+            <v-btn :to="{ name: 'task', params: { id: item.id }}" text small>
               <v-icon>mdi-close</v-icon>
             </v-btn>
           </v-list-item-icon>
           <v-list-item-content>
-            <v-list-item-title v-text="item.value" />
+            <v-list-item-title v-text="item.name" />
           </v-list-item-content>
         </v-list-item>
       </v-list>
@@ -25,6 +25,7 @@
 <script lang="ts">
 import { Vue, Component, Prop } from "vue-property-decorator";
 import { IBoardColumn } from "@/interfaces/board";
+
 @Component
 export default class KanbanColumn extends Vue {
   @Prop({ required: true }) private column!: IBoardColumn;
