@@ -1,7 +1,7 @@
 import Vue from "vue";
 import Vuex, { GetterTree } from "vuex";
 import { saveStatePlugin } from "@/plugins/saveState";
-import { IBoard } from "@/interfaces/board";
+import { IBoard, IBoardColumn } from "@/interfaces/board";
 import { uuid } from "@/utils/uuid";
 
 Vue.use(Vuex);
@@ -65,13 +65,19 @@ const mutations = {
 
   UPDATE_TASK(state, { task, key, value }) {
     Vue.set(task, key, value);
+  },
+
+  MOVE_TASK(state, { from, to, index }) {
+    debugger;
+    const [task] = from.splice(index, 1);
+    to.push(task);
   }
 };
 
 const actions = {};
 
 const getters: GetterTree<IState, IState> = {
-  getTask: state => (id: string) => {
+  getTaskById: state => (id: string) => {
     for (const column of state.board.columns) {
       for (const task of column.items) {
         if (task.id === id) {
@@ -79,7 +85,13 @@ const getters: GetterTree<IState, IState> = {
         }
       }
     }
-  }
+  },
+
+  getTasksByColumnIndex: state => (columnIndex: number) =>
+    state.board.columns[columnIndex].items || [],
+
+  getColumnIndex: state => (column: IBoardColumn) =>
+    state.board.columns.indexOf(column)
 };
 
 // tslint:disable-next-line:typedef

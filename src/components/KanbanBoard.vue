@@ -33,7 +33,7 @@ import KanbanColumn from "@/components/KanbanColumn.vue";
 })
 export default class KanbanBoard extends Vue {
   @State board!: IBoard;
-  @Getter private getTask!: (id: string) => IBoardItem | undefined;
+  @Getter private getTaskById!: (id: string) => IBoardItem | undefined;
 
   private get columnWidth(): number {
     return this.board.columns.length ? 12 / this.board.columns.length : 0;
@@ -44,9 +44,8 @@ export default class KanbanBoard extends Vue {
   }
 
   private get selectedTask(): IBoardItem | null {
-    debugger;
     const id: string | null = this.isOpen ? this.$route.params.id : null;
-    return id ? this.getTask(id) || null : null;
+    return id ? this.getTaskById(id) || null : null;
   }
 }
 </script>
