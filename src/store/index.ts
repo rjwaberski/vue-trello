@@ -2,6 +2,7 @@ import Vue from "vue";
 import Vuex, { GetterTree } from "vuex";
 import { saveStatePlugin } from "@/plugins/saveState";
 import { IBoard } from "@/interfaces/board";
+import { uuid } from "@/utils/uuid";
 
 Vue.use(Vuex);
 
@@ -53,6 +54,22 @@ const state: IState = {
   board: defaultBoard
 };
 
+const mutations = {
+  CREATE_TASK(state, { tasks, name }) {
+    tasks.push({
+      id: uuid(),
+      name,
+      content: ""
+    });
+  },
+
+  UPDATE_TASK(state, { task, key, value }) {
+    Vue.set(task, key, value);
+  }
+};
+
+const actions = {};
+
 const getters: GetterTree<IState, IState> = {
   getTask: state => (id: string) => {
     for (const column of state.board.columns) {
@@ -74,8 +91,8 @@ if (localStorageBoard) {
 export default new Vuex.Store({
   state,
   getters,
-  mutations: {},
-  actions: {},
+  mutations,
+  actions,
   modules: {},
   plugins: [saveStatePlugin]
 });

@@ -3,7 +3,9 @@
     <v-card>
       <template v-if="task">
         <v-card-title class="headline">{{ task.name }}</v-card-title>
-        <v-card-text>{{ task.content }}</v-card-text>
+        <v-card-text>
+          <v-textarea :value="task.content" name="item-content" label="Description"></v-textarea>
+        </v-card-text>
       </template>
 
       <template v-else>
