@@ -6,14 +6,14 @@ $background: #dfdfdf;
 
 .neuromorphic-shadow {
   &--concave {
-    border-radius: 50px;
+    border-radius: 5px;
     background: linear-gradient(145deg, #efefef, #c9c9c9);
-    box-shadow: 30px 30px 60px #bebebe, -30px -30px 60px #ffffff;
+    box-shadow: 10px 10px 30px #bebebe, -10px -10px 30px #ffffff;
   }
 
   &--convex {
-    border-radius: 50px;
+    border-radius: 5px;
     background: linear-gradient(145deg, #c9c9c9, #efefef);
-    box-shadow: 30px 30px 60px #bebebe, -30px -30px 60px #ffffff;
+    box-shadow: 10px 10px 30px #bebebe, -10px -10px 30px #ffffff;
   }
 }

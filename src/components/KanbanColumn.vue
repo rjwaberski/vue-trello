@@ -2,7 +2,7 @@
   <div>
     <p class="mb-3 text-center title primary--text">{{ column.name }}</p>
     <v-sheet
-      class="mx-auto neuromorphic-shadow--concave pa-6 pt-10"
+      class="mx-auto neuromorphic-shadow--convex pa-6 pt-10"
       height="500"
       width="300"
       @drop="onDrop($event, column.items)"
@@ -18,8 +18,8 @@
           @dragstart="pickTask($event, i, getColumnIndex(column))"
         >
           <v-list-item-icon>
-            <v-btn :to="{ name: 'task', params: { id: item.id }}" text small>
-              <v-icon>mdi-close</v-icon>
+            <v-btn :to="{ name: 'task', params: { id: item.id } }" text small>
+              <v-icon>mdi-pencil</v-icon>
             </v-btn>
           </v-list-item-icon>
           <v-list-item-content>

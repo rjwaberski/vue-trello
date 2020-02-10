@@ -68,7 +68,6 @@ const mutations = {
   },
 
   MOVE_TASK(state, { from, to, index }) {
-    debugger;
     const [task] = from.splice(index, 1);
     to.push(task);
   }
