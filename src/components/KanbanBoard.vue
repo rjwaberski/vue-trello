@@ -21,7 +21,7 @@
 
 <script lang="ts">
 import { Vue, Component, Prop } from "vue-property-decorator";
-import { State, Getter } from "vuex-class";
+import { State, Getter, Mutation } from "vuex-class";
 import { IBoardColumn, IBoard, IBoardItem } from "@/interfaces/board";
 
 import KanbanColumn from "@/components/KanbanColumn.vue";
@@ -34,6 +34,7 @@ import KanbanColumn from "@/components/KanbanColumn.vue";
 export default class KanbanBoard extends Vue {
   @State board!: IBoard;
   @Getter private getTaskById!: (id: string) => IBoardItem | undefined;
+  @Mutation private createTask!: (data: any) => void;
 
   private get columnWidth(): number {
     return this.board.columns.length ? 12 / this.board.columns.length : 0;

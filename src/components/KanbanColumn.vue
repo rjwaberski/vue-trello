@@ -28,6 +28,8 @@
         </v-list-item>
       </v-list>
     </v-sheet>
+
+    <v-text-field placeholder="Enter new task" />
   </div>
 </template>
 

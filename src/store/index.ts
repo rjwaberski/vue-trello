@@ -1,51 +1,12 @@
 import Vue from "vue";
 import Vuex, { GetterTree } from "vuex";
 import { saveStatePlugin } from "@/plugins/saveState";
-import { IBoard, IBoardColumn } from "@/interfaces/board";
+import { IBoard, IBoardColumn, IBoardItem } from "@/interfaces/board";
 import { uuid } from "@/utils/uuid";
-
+import { getInitialData } from '@/utils/data';
 Vue.use(Vuex);
 
-const defaultBoard: IBoard = {
-  columns: [
-    {
-      name: "backlog",
-      items: [
-        {
-          name: "Make a portfolio website",
-          content: "do it",
-          created: new Date(),
-          id: "1234"
-        },
-        {
-          name: "Change job",
-          content: "also do it",
-          created: new Date(),
-          id: "33"
-        }
-      ]
-    },
-    {
-      name: "todo",
-      items: []
-    },
-    {
-      name: "in progress",
-      items: [
-        {
-          name: "Vue kanban board project",
-          content: "already doing it",
-          created: new Date(),
-          id: "12345"
-        }
-      ]
-    },
-    {
-      name: "done",
-      items: []
-    }
-  ]
-};
+const defaultBoard: IBoard = getInitialData();
 
 interface IState {
   board: IBoard;
@@ -55,19 +16,26 @@ const state: IState = {
 };
 
 const mutations = {
-  CREATE_TASK(state, { tasks, name }) {
+  CREATE_TASK(
+    state: IState,
+    { tasks, name }: { tasks: IBoardItem[]; name: string }
+  ) {
     tasks.push({
       id: uuid(),
       name,
-      content: ""
+      content: "",
+      created: new Date()
     });
   },
 
-  UPDATE_TASK(state, { task, key, value }) {
+  UPDATE_TASK(
+    state: IState,
+    { task, key, value }: { task: IBoardItem; key: number; value: IBoardItem }
+  ) {
     Vue.set(task, key, value);
   },
 
-  MOVE_TASK(state, { from, to, index }) {
+  MOVE_TASK(state: IState, { from, to, index }) {
     const [task] = from.splice(index, 1);
     to.push(task);
   }
