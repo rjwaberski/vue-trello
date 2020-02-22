@@ -18,7 +18,7 @@
           @dragstart="pickTask($event, i, getColumnIndex(column))"
         >
           <v-list-item-icon>
-            <v-btn :to="{ name: 'task', params: { id: item.id } }" text small>
+            <v-btn :to="{ name: 'task', params: { id: item.id } }" text x-small fab>
               <v-icon>mdi-pencil</v-icon>
             </v-btn>
           </v-list-item-icon>
